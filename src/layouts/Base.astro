@@ -1,0 +1,55 @@
+---
+import { resume } from '../data/resume';
+const { seo, name } = resume;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta name="author" content={name} />
+    <link rel="canonical" href={seo.url} />
+
+    <!-- Open Graph (LinkedIn, WhatsApp, Slack previews) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.url} />
+    {seo.ogImage && <meta property="og:image" content={`${seo.url}${seo.ogImage}`} />}
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+
+    <!-- Structured data: Google understands this is a person/resume -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": name,
+      "url": seo.url,
+      "jobTitle": "Full-Stack Engineer",
+      "description": seo.description,
+      "address": { "@type": "PostalAddress", "addressLocality": "Mumbai", "addressCountry": "IN" },
+      "email": resume.contact.email,
+      "sameAs": [
+        `https://${resume.contact.linkedin}`,
+        `https://${resume.contact.github}`,
+      ]
+    })} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
