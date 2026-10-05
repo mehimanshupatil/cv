@@ -65,6 +65,21 @@ export const resume = {
     { label: "Dev Practices", items: "CI/CD, Git, Component Systems, Performance Optimisation, AI-assisted workflows (Claude Code, Copilot)" },
   ],
 
+  publications: [
+    {
+      title: "Building LocalKit to keep routine file jobs local",
+      outlet: "Canvs Blog",
+      date: "Aug 2026",
+      url: "https://canvs.in/blog/building-localkit-to-keep-routine-file-jobs-local",
+    },
+    {
+      title: "Validating vibe code: Notes from a developer",
+      outlet: "Canvs Blog",
+      date: "Jul 2025",
+      url: "https://canvs.in/blog/notes-on-vibe-coding",
+    },
+  ],
+
   education: [
     {
       degree: "Bachelor of Engineering, Information Technology",
