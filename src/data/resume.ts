@@ -2,6 +2,9 @@ export const resume = {
   name: "Himanshu Patil",
   tagline: "Full-Stack Engineer · React / Next.js / AWS · 7 Years",
 
+  // File name suggested when saving as PDF (browsers use the page title)
+  pdfFileName: "Himanshu_Patil_Resume",
+
   // SEO fields — these appear in Google search results
   seo: {
     title: "Himanshu Patil — Full-Stack Engineer",

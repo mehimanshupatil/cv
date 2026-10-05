@@ -11,6 +11,7 @@ const {
   skills,
   education,
   other,
+  pdfFileName,
 } = resume;
 ---
 
@@ -316,6 +317,12 @@ const {
     <div class="print-bar">
       <button onclick="window.print()">⬇ Print / Save as PDF</button>
     </div>
+    <script is:inline define:vars={{ pdfFileName }}>
+      // Browsers name the saved PDF after document.title; swap it only while printing
+      const pageTitle = document.title;
+      addEventListener("beforeprint", () => (document.title = pdfFileName));
+      addEventListener("afterprint", () => (document.title = pageTitle));
+    </script>
 
     <div class="page">
       <header>
