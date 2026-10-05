@@ -86,8 +86,8 @@ const {
       /* Header */
       header {
         border-bottom: 1.5px solid var(--ink);
-        padding-bottom: 10px;
-        margin-bottom: 14px;
+        padding-bottom: 8px;
+        margin-bottom: 8pt;
       }
 
       .header-top {
@@ -99,7 +99,7 @@ const {
 
       h1 {
         font-family: var(--serif);
-        font-size: 28px;
+        font-size: 22pt;
         font-weight: 400;
         letter-spacing: 0.02em;
         line-height: 1;
@@ -107,7 +107,7 @@ const {
 
       .tagline {
         font-family: var(--mono);
-        font-size: 9.5px;
+        font-size: 8.5pt;
         color: var(--ink3);
         letter-spacing: 0.12em;
         text-transform: uppercase;
@@ -117,13 +117,15 @@ const {
       address {
         font-style: normal;
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 8.5pt;
         color: var(--ink2);
         letter-spacing: 0.04em;
-        line-height: 1.9;
+        line-height: 1.45;
         text-align: right;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 14pt;
+        justify-items: end;
       }
 
       address a {
@@ -137,27 +139,30 @@ const {
 
       /* Summary */
       .summary {
-        font-size: 11px;
-        line-height: 1.65;
+        font-size: 10pt;
+        line-height: 1.35;
         color: var(--ink2);
-        margin-bottom: 14px;
-        padding-bottom: 12px;
+        margin-bottom: 8pt;
+        padding-bottom: 2pt;
         /* border-bottom: 0.5px solid var(--rule); */
       }
 
       /* Sections */
       section {
-        margin-bottom: 13px;
+        margin-bottom: 8pt;
+      }
+      section:last-child {
+        margin-bottom: 0;
       }
 
       .section-head {
         font-family: var(--mono);
         font-weight: 400;
-        font-size: 9px;
+        font-size: 10.5pt;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--ink3);
-        margin-bottom: 7px;
+        margin-bottom: 5pt;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -171,7 +176,7 @@ const {
 
       /* Experience */
       .role {
-        margin-bottom: 11px;
+        margin-bottom: 8pt;
       }
 
       .role-header {
@@ -182,22 +187,22 @@ const {
       }
 
       .role-title {
-        font-size: 12.5px;
+        font-size: 11pt;
         font-weight: 500;
       }
 
       .role-date {
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 9pt;
         color: var(--ink3);
         letter-spacing: 0.05em;
       }
 
       .role-company {
-        font-size: 11px;
+        font-size: 10pt;
         color: var(--ink2);
         font-style: italic;
-        margin-bottom: 5px;
+        margin-bottom: 3pt;
       }
 
       ul {
@@ -205,42 +210,45 @@ const {
       }
 
       li {
-        font-size: 11px;
-        line-height: 1.55;
+        font-size: 10pt;
+        line-height: 1.32;
         color: var(--ink2);
-        padding-left: 11px;
-        text-indent: -11px;
-        margin-bottom: 3px;
+        padding-left: 14px;
+        text-indent: -14px;
+        margin-bottom: 1pt;
       }
       li::before {
         content: "—";
         display: inline-block;
-        width: 11px;
+        width: 14px;
         text-indent: 0;
         color: var(--ink3);
-        font-size: 9px;
+        font-size: 9pt;
       }
 
       /* Skills */
       .skills-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 7px 16px;
+        grid-template-columns: max-content 1fr;
+        gap: 3pt 12pt;
+        align-items: baseline;
+      }
+      .skills-grid > div {
+        display: contents;
       }
 
       .skill-label {
         font-family: var(--mono);
-        font-size: 8px;
+        font-size: 8.5pt;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--ink3);
-        margin-bottom: 2px;
       }
 
       .skill-items {
-        font-size: 10px;
+        font-size: 10pt;
         color: var(--ink2);
-        line-height: 1.5;
+        line-height: 1.32;
       }
 
       /* Education */
@@ -252,39 +260,40 @@ const {
       }
 
       .edu-deg {
-        font-size: 11.5px;
+        font-size: 10.5pt;
         font-weight: 500;
       }
       .edu-date {
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 9pt;
         color: var(--ink3);
       }
       .edu-inst {
-        font-size: 10px;
+        font-size: 10pt;
         color: var(--ink2);
         font-style: italic;
-        margin-bottom: 6px;
+        margin-bottom: 4pt;
       }
 
       /* Other */
       .other-row {
-        display: flex;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 3pt 12pt;
+        align-items: baseline;
       }
       .other-item {
-        flex: 1;
+        display: contents;
       }
       .other-title {
-        font-size: 11px;
+        font-size: 10.5pt;
         font-weight: 500;
-        margin-bottom: 1px;
       }
       .other-sub {
-        font-size: 10px;
+        font-size: 10pt;
         color: var(--ink2);
         font-style: italic;
-        line-height: 1.5;
+        line-height: 1.32;
       }
 
       /* Print */
@@ -311,7 +320,7 @@ const {
         }
         .page {
           width: 100%;
-          padding: 12mm 14mm;
+          padding: 8mm 12mm;
         }
       }
     </style>
