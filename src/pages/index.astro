@@ -32,7 +32,7 @@ const {
         --rule: #d8d5ce;
         --page: #faf9f6;
         --shell: #e8e5de;
-        --serif: "EB Garamond", Georgia, serif;
+        --serif: Georgia, "Times New Roman", serif;
         --mono: "DM Mono", monospace;
       }
 
@@ -151,6 +151,7 @@ const {
 
       .section-head {
         font-family: var(--mono);
+        font-weight: 400;
         font-size: 9px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -207,16 +208,16 @@ const {
         line-height: 1.55;
         color: var(--ink2);
         padding-left: 11px;
-        position: relative;
+        text-indent: -11px;
         margin-bottom: 3px;
       }
       li::before {
         content: "—";
-        position: absolute;
-        left: 0;
+        display: inline-block;
+        width: 11px;
+        text-indent: 0;
         color: var(--ink3);
         font-size: 9px;
-        top: 1px;
       }
 
       /* Skills */
@@ -295,7 +296,7 @@ const {
         html,
         body {
           background: var(--page);
-          height: 100%;
+          height: auto;
         }
         .shell {
           padding: 0;
@@ -340,7 +341,7 @@ const {
 
       <!-- Experience -->
       <section>
-        <p class="section-head">Experience</p>
+        <h2 class="section-head">Experience</h2>
         {
           experience.map((role) => (
             <div class="role">
@@ -365,7 +366,7 @@ const {
 
       <!-- Skills -->
       <section>
-        <p class="section-head">Skills</p>
+        <h2 class="section-head">Skills</h2>
         <div class="skills-grid">
           {
             skills.map((s) => (
@@ -380,7 +381,7 @@ const {
 
       <!-- Education -->
       <section>
-        <p class="section-head">Education</p>
+        <h2 class="section-head">Education</h2>
         {
           education.map((e) => (
             <div>
@@ -398,7 +399,7 @@ const {
 
       <!-- Other -->
       <section>
-        <p class="section-head">Other</p>
+        <h2 class="section-head">Other</h2>
         <div class="other-row">
           {
             other.map((o) => (
