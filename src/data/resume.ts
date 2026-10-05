@@ -68,7 +68,7 @@ export const resume = {
 
   education: [
     {
-      degree: "Bachelor of Engineering, Computer Science",
+      degree: "Bachelor of Engineering, Information Technology",
       institution: "Mumbai University, Mumbai",
       from: "2016",
       to: "2019",
