@@ -11,7 +11,11 @@ const {
   skills,
   education,
   other,
+  pdfFileName,
 } = resume;
+
+// Profile links show an icon plus the handle; the full URL stays in href
+const handle = (url: string) => url.slice(url.lastIndexOf("/") + 1);
 ---
 
 <Base>
@@ -32,7 +36,7 @@ const {
         --rule: #d8d5ce;
         --page: #faf9f6;
         --shell: #e8e5de;
-        --serif: "EB Garamond", Georgia, serif;
+        --serif: Georgia, "Times New Roman", serif;
         --mono: "DM Mono", monospace;
       }
 
@@ -85,8 +89,8 @@ const {
       /* Header */
       header {
         border-bottom: 1.5px solid var(--ink);
-        padding-bottom: 10px;
-        margin-bottom: 14px;
+        padding-bottom: 8px;
+        margin-bottom: 8pt;
       }
 
       .header-top {
@@ -98,7 +102,7 @@ const {
 
       h1 {
         font-family: var(--serif);
-        font-size: 28px;
+        font-size: 22pt;
         font-weight: 400;
         letter-spacing: 0.02em;
         line-height: 1;
@@ -106,7 +110,7 @@ const {
 
       .tagline {
         font-family: var(--mono);
-        font-size: 9.5px;
+        font-size: 8.5pt;
         color: var(--ink3);
         letter-spacing: 0.12em;
         text-transform: uppercase;
@@ -116,13 +120,15 @@ const {
       address {
         font-style: normal;
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 8.5pt;
         color: var(--ink2);
         letter-spacing: 0.04em;
-        line-height: 1.9;
+        line-height: 1.45;
         text-align: right;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 14pt;
+        justify-items: end;
       }
 
       address a {
@@ -134,28 +140,43 @@ const {
         text-decoration: underline;
       }
 
+      /* Phosphor icons (MIT) */
+      .social {
+        white-space: nowrap;
+      }
+      .social svg {
+        width: 1.25em;
+        height: 1.25em;
+        vertical-align: -0.25em;
+        margin-right: 0.35em;
+      }
+
       /* Summary */
       .summary {
-        font-size: 11px;
-        line-height: 1.65;
+        font-size: 10pt;
+        line-height: 1.35;
         color: var(--ink2);
-        margin-bottom: 14px;
-        padding-bottom: 12px;
+        margin-bottom: 8pt;
+        padding-bottom: 2pt;
         /* border-bottom: 0.5px solid var(--rule); */
       }
 
       /* Sections */
       section {
-        margin-bottom: 13px;
+        margin-bottom: 8pt;
+      }
+      section:last-child {
+        margin-bottom: 0;
       }
 
       .section-head {
         font-family: var(--mono);
-        font-size: 9px;
+        font-weight: 400;
+        font-size: 10.5pt;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--ink3);
-        margin-bottom: 7px;
+        margin-bottom: 5pt;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -169,7 +190,7 @@ const {
 
       /* Experience */
       .role {
-        margin-bottom: 11px;
+        margin-bottom: 8pt;
       }
 
       .role-header {
@@ -180,22 +201,22 @@ const {
       }
 
       .role-title {
-        font-size: 12.5px;
+        font-size: 11pt;
         font-weight: 500;
       }
 
       .role-date {
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 9pt;
         color: var(--ink3);
         letter-spacing: 0.05em;
       }
 
       .role-company {
-        font-size: 11px;
+        font-size: 10pt;
         color: var(--ink2);
         font-style: italic;
-        margin-bottom: 5px;
+        margin-bottom: 3pt;
       }
 
       ul {
@@ -203,42 +224,45 @@ const {
       }
 
       li {
-        font-size: 11px;
-        line-height: 1.55;
+        font-size: 10pt;
+        line-height: 1.32;
         color: var(--ink2);
-        padding-left: 11px;
-        position: relative;
-        margin-bottom: 3px;
+        padding-left: 14px;
+        text-indent: -14px;
+        margin-bottom: 1pt;
       }
       li::before {
         content: "—";
-        position: absolute;
-        left: 0;
+        display: inline-block;
+        width: 14px;
+        text-indent: 0;
         color: var(--ink3);
-        font-size: 9px;
-        top: 1px;
+        font-size: 9pt;
       }
 
       /* Skills */
       .skills-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 7px 16px;
+        grid-template-columns: max-content 1fr;
+        gap: 3pt 12pt;
+        align-items: baseline;
+      }
+      .skills-grid > div {
+        display: contents;
       }
 
       .skill-label {
         font-family: var(--mono);
-        font-size: 8px;
+        font-size: 8.5pt;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--ink3);
-        margin-bottom: 2px;
       }
 
       .skill-items {
-        font-size: 10px;
+        font-size: 10pt;
         color: var(--ink2);
-        line-height: 1.5;
+        line-height: 1.32;
       }
 
       /* Education */
@@ -250,39 +274,40 @@ const {
       }
 
       .edu-deg {
-        font-size: 11.5px;
+        font-size: 10.5pt;
         font-weight: 500;
       }
       .edu-date {
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 9pt;
         color: var(--ink3);
       }
       .edu-inst {
-        font-size: 10px;
+        font-size: 10pt;
         color: var(--ink2);
         font-style: italic;
-        margin-bottom: 6px;
+        margin-bottom: 4pt;
       }
 
       /* Other */
       .other-row {
-        display: flex;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 3pt 12pt;
+        align-items: baseline;
       }
       .other-item {
-        flex: 1;
+        display: contents;
       }
       .other-title {
-        font-size: 11px;
+        font-size: 10.5pt;
         font-weight: 500;
-        margin-bottom: 1px;
       }
       .other-sub {
-        font-size: 10px;
+        font-size: 10pt;
         color: var(--ink2);
         font-style: italic;
-        line-height: 1.5;
+        line-height: 1.32;
       }
 
       /* Print */
@@ -292,10 +317,14 @@ const {
       }
 
       @media print {
+        /* Plain white paper so leftover space reads as a normal margin */
+        :root {
+          --page: #ffffff;
+        }
         html,
         body {
           background: var(--page);
-          height: 100%;
+          height: auto;
         }
         .shell {
           padding: 0;
@@ -305,7 +334,7 @@ const {
         }
         .page {
           width: 100%;
-          padding: 12mm 14mm;
+          padding: 8mm 12mm;
         }
       }
     </style>
@@ -315,6 +344,12 @@ const {
     <div class="print-bar">
       <button onclick="window.print()">⬇ Print / Save as PDF</button>
     </div>
+    <script is:inline define:vars={{ pdfFileName }}>
+      // Browsers name the saved PDF after document.title; swap it only while printing
+      const pageTitle = document.title;
+      addEventListener("beforeprint", () => (document.title = pdfFileName));
+      addEventListener("afterprint", () => (document.title = pageTitle));
+    </script>
 
     <div class="page">
       <header>
@@ -329,8 +364,12 @@ const {
             >
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={`https://${contact.website}`}>{contact.website}</a>
-            <a href={`https://${contact.linkedin}`}>{contact.linkedin}</a>
-            <a href={`https://${contact.github}`}>{contact.github}</a>
+            <a class="social" href={`https://${contact.linkedin}`} aria-label={`LinkedIn: ${contact.linkedin}`}>
+              <svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></svg>{handle(contact.linkedin)}
+            </a>
+            <a class="social" href={`https://${contact.github}`} aria-label={`GitHub: ${contact.github}`}>
+              <svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></svg>{handle(contact.github)}
+            </a>
             <span>{contact.location}</span>
           </address>
         </div>
@@ -340,7 +379,7 @@ const {
 
       <!-- Experience -->
       <section>
-        <p class="section-head">Experience</p>
+        <h2 class="section-head">Experience</h2>
         {
           experience.map((role) => (
             <div class="role">
@@ -365,7 +404,7 @@ const {
 
       <!-- Skills -->
       <section>
-        <p class="section-head">Skills</p>
+        <h2 class="section-head">Skills</h2>
         <div class="skills-grid">
           {
             skills.map((s) => (
@@ -380,7 +419,7 @@ const {
 
       <!-- Education -->
       <section>
-        <p class="section-head">Education</p>
+        <h2 class="section-head">Education</h2>
         {
           education.map((e) => (
             <div>
@@ -398,7 +437,7 @@ const {
 
       <!-- Other -->
       <section>
-        <p class="section-head">Other</p>
+        <h2 class="section-head">Other</h2>
         <div class="other-row">
           {
             other.map((o) => (
