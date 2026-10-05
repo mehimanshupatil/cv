@@ -294,6 +294,10 @@ const {
       }
 
       @media print {
+        /* Plain white paper so leftover space reads as a normal margin */
+        :root {
+          --page: #ffffff;
+        }
         html,
         body {
           background: var(--page);
