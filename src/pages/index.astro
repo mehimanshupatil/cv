@@ -9,6 +9,7 @@ const {
   summary,
   experience,
   skills,
+  publications,
   education,
   pdfFileName,
 } = resume;
@@ -264,6 +265,32 @@ const handle = (url: string) => url.slice(url.lastIndexOf("/") + 1);
         line-height: 1.32;
       }
 
+      /* Publications */
+      .pub-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12pt;
+        margin-bottom: 2pt;
+      }
+      .pub-title {
+        font-size: 10pt;
+        color: var(--ink2);
+      }
+      .pub-title a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .pub-title a:hover {
+        text-decoration: underline;
+      }
+      .pub-date {
+        font-family: var(--mono);
+        font-size: 9pt;
+        color: var(--ink3);
+        white-space: nowrap;
+      }
+
       /* Education */
       .edu-row {
         display: flex;
@@ -393,6 +420,21 @@ const handle = (url: string) => url.slice(url.lastIndexOf("/") + 1);
             ))
           }
         </div>
+      </section>
+
+      <!-- Publications -->
+      <section>
+        <h2 class="section-head">Publications</h2>
+        {
+          publications.map((p) => (
+            <div class="pub-row">
+              <span class="pub-title">
+                <a href={p.url}>{p.title}</a> — <em>{p.outlet}</em>
+              </span>
+              <span class="pub-date">{p.date}</span>
+            </div>
+          ))
+        }
       </section>
 
       <!-- Education -->
