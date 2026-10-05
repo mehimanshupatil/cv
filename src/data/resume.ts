@@ -16,7 +16,7 @@ export const resume = {
 
   contact: {
     phone: "+91 82377 32718",
-    email: "dev@himanshupatil.dev",
+    email: "work@himanshupatil.dev",
     website: "himanshupatil.dev",
     linkedin: "linkedin.com/in/mehimanshupatil",
     github: "github.com/mehimanshupatil",
