@@ -10,7 +10,6 @@ const {
   experience,
   skills,
   education,
-  other,
   pdfFileName,
 } = resume;
 
@@ -289,27 +288,6 @@ const handle = (url: string) => url.slice(url.lastIndexOf("/") + 1);
         margin-bottom: 4pt;
       }
 
-      /* Other */
-      .other-row {
-        display: grid;
-        grid-template-columns: max-content 1fr;
-        gap: 3pt 12pt;
-        align-items: baseline;
-      }
-      .other-item {
-        display: contents;
-      }
-      .other-title {
-        font-size: 10.5pt;
-        font-weight: 500;
-      }
-      .other-sub {
-        font-size: 10pt;
-        color: var(--ink2);
-        font-style: italic;
-        line-height: 1.32;
-      }
-
       /* Print */
       @page {
         size: A4;
@@ -435,20 +413,6 @@ const handle = (url: string) => url.slice(url.lastIndexOf("/") + 1);
         }
       </section>
 
-      <!-- Other -->
-      <section>
-        <h2 class="section-head">Other</h2>
-        <div class="other-row">
-          {
-            other.map((o) => (
-              <div class="other-item">
-                <p class="other-title">{o.title}</p>
-                <p class="other-sub">{o.description}</p>
-              </div>
-            ))
-          }
-        </div>
-      </section>
     </div>
   </div>
 </Base>
