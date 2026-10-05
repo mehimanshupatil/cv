@@ -80,19 +80,4 @@ export const resume = {
       to: "2016",
     },
   ],
-
-  other: [
-    {
-      title: "Sanjeevani Parivar NGO",
-      description: "Technical member — builds and maintains all software tools and automation for the organisation.",
-    },
-    {
-      title: "Certification",
-      description: "Python for Everybody Specialisation — University of Michigan, Coursera",
-    },
-    {
-      title: "Open Source",
-      description: "Contributes to open-source packages on GitHub; active on StackOverflow.",
-    },
-  ],
 };
